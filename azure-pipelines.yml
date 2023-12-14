@@ -23,4 +23,4 @@ steps:
       
       az group create --name $(resourceGroupName) --location eastus2
       
-      az aks create -g $(resourceGroupName) -n $(aksName) --enable-managed-identity --location eastus2 --node-count 3  --enable-msi-auth-for-monitoring --generate-ssh-keys
+      az aks create -g $(RESOURCEGROUPNAME) -n $(AKSNAME) --enable-managed-identity --location eastus2 --node-count 3  --enable-msi-auth-for-monitoring --generate-ssh-keys
