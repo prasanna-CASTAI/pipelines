@@ -1,0 +1,26 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- none
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'Amex-new(697e39d3-4b01-469d-b330-75266e90ccea)'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az account set --subscription 697e39d3-4b01-469d-b330-75266e90ccea
+      
+      az provider show -n Microsoft.OperationsManagement -o table
+      az provider show -n Microsoft.OperationalInsights -o table
+      
+      az group create --name $(RESOURCEGROUPNAME) --location eastus2
+      
+      az aks create -g $(RESOURCEGROUPNAME) -n $(AKSNAME) --enable-managed-identity --location eastus2 --node-count 3  --enable-msi-auth-for-monitoring --generate-ssh-keys
