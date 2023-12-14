@@ -12,7 +12,7 @@ pool:
 steps:
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 'Amex-new(697e39d3-4b01-469d-b330-75266e90ccea)'
+    azureSubscription: 'AKS-creation'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
